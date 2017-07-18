@@ -7,11 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Athlete
  *
- * @ORM\Table(name="athlete")
+ * @ORM\Table(name="athlete", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity
  */
 class Athlete
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
     /**
      * @var string
      *
@@ -25,12 +32,6 @@ class Athlete
      * @ORM\Column(name="lastname", type="string", length=128, nullable=false)
      */
     private $lastname;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="id")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    protected $user;
 
     /**
      * @var \DateTime
@@ -47,42 +48,6 @@ class Athlete
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    function getFirstname() {
-        return $this->firstname;
-    }
-
-    function getUser() {
-        return $this->user_id;
-    }
-
-    function getBirthdate(): \DateTime {
-        return $this->birthdate;
-    }
-
-    function setFirstname($firstname) {
-        $this->firstname = $firstname;
-    }
-
-    function setBirthdate(\DateTime $birthdate) {
-        $this->birthdate = $birthdate;
-    }
-
-    function getLastname() {
-        return $this->lastname;
-    }
-
-    function setLastname($lastname) {
-        $this->lastname = $lastname;
-    }
-
-    function getId() {
-        return $this->id;
-    }
-    
-    function setUser(User $user){
-        $this->user = $user;
-    }
 
 
 }
