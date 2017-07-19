@@ -22,7 +22,7 @@ class ResultController extends Controller{
     public function showResultsPerMeeting() {
         $em = $this->getDoctrine()->getManager();
         $Events = $em->getRepository('AppBundle:Meeting')->findAll();
-        $Results = $em->getRepository('AppBundle:Result')->findAll();
+        $Results = $em->getRepository('AppBundle:Result')->findAllOrderedByPoints();
         
         
         return $this->render('pages/results.html.twig', ['events'=>$Events, 'results'=>$Results]);

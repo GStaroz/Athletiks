@@ -9,3 +9,10 @@ div.gogol{
 
 li {display: flex !important; align-items: center; justify-content: flex-start}
 .featuredInscrit {margin-left: 5px;}
+
+
+.list-group-item-heading {display: flex; justify-content: space-between;
+            font-weight: bold}
+span.badge {float: right}
+div.divli {width:100%; border: none}
+div.resultcol {border: none}
