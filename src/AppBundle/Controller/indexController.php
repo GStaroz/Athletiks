@@ -27,9 +27,13 @@ class indexController extends Controller {
     public function alleventsAction(){
         
         $today = new \DateTime('now');
+        $nextWeek = $today->modify("+ 7 days");
         $em = $this->getDoctrine()->getManager();
         $meeting = $em->getRepository('AppBundle:Meeting')->findMostRecent();
+        $Events = $em->getRepository('AppBundle:Meeting')->findAll();
         return $this->render('pages/home.html.twig',['today'=>$today,
-            'meeting'=> $meeting]);
+            'meeting'=> $meeting,
+            'nextweek'=>$nextWeek,
+            'events'=>$Events]);
     }
 }

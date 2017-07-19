@@ -24,6 +24,23 @@ class eventsController extends Controller {
      */
     public function showFeaturedAction(){
         $em = $this->getDoctrine()->getManager();
-        
+        $featured = $em->getRepository('AppBundle:Meeting')->findMostRecent();
+        $inscrits = $em->getRepository('AppBundle:Athlete')->findAll();
+        $Events = $em->getRepository('AppBundle:Meeting')->findAll();
+        return $this->render('pages/featured.html.twig', ['featured'=>$featured, 'inscrits'=>$inscrits, 'events'=>$Events]);
+    }
+    
+    /**
+     * @Route("Events/{meetingName}", name="event") 
+     */
+    public function showEventAction($meetingName){
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('AppBundle:Meeting')->findOneBy(['name'=> $meetingName]);
+        $inscrits = $em->getRepository('AppBundle:Athlete')->findAll();
+        $Events = $em->getRepository('AppBundle:Meeting')->findAll();
+        if (!$event){
+            throw $this->createNotFoundException('genus not found O:');
+        }
+        return $this->render('pages/events.html.twig',['events'=>$Events, 'mainevent'=>$event, 'inscrits'=>$inscrits]);
     }
 }

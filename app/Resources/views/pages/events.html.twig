@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="container ">
+            <div class="col-xs-6 col-sm-7 col-lg-9">
+                <img id='featured' class='img-responsive' src="{{asset('images/quimpertasse.jpg')}}" alt="la ville de l'event"> 
+            <div>
+                <h2>Event details</h2>
+                <p>{{ mainevent.description}}</p>
+                <dl>
+                    <dt>Place:</dt>
+                    <dl>{{mainevent.name}}</dl>
+                    <dt>Date:</dt>
+                    <dl>{{mainevent.date|date('d/m/Y')}}</dl>
+                </dl>
+                <a href="" class='btn btn-success' role='button'>Participer</a>
+            </div>        
+            </div>
+            <div class="col-xs-6 col-sm-5 col-lg-3 text-center">
+                <h3>Participants</h3>
+                <ul class='list-group'>
+                    {% for inscrit in inscrits %}
+                        <li class='list-group-item'><img class='avatar img-responsive hidden-xs' src='http://via.placeholder.com/50x50' alt='avatar'>
+                            <div class='featuredInscrit'>{{ inscrit.firstname }} {{ inscrit.lastname }}</div></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

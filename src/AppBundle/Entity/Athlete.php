@@ -34,9 +34,9 @@ class Athlete
     private $lastname;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="birthdate", type="date", nullable=false)
+     * @ORM\Column(name="birthdate", type="integer", nullable=false)
      */
     private $birthdate;
 
@@ -49,6 +49,40 @@ class Athlete
      */
     private $id;
 
+    function getFirstname() {
+        return $this->firstname;
+    }
 
+    function getLastname() {
+        return $this->lastname;
+    }
+
+    function getBirthdate() {
+        return $this->birthdate;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+    function setFirstname($firstname) {
+        $this->firstname = $firstname;
+    }
+
+    function setLastname($lastname) {
+        $this->lastname = $lastname;
+    }
+
+    function setBirthdate($birthdate) {
+        $this->birthdate = $birthdate;
+    }
+
+    function getUserId() {
+        return $this->userId;
+    }
+
+
+
+    
 }
 

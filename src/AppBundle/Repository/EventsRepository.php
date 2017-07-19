@@ -25,7 +25,7 @@ class EventsRepository extends EntityRepository {
         return $this->createQueryBuilder('meeting')
                 ->andWhere('meeting.date >= :tomorrow')
                 ->setParameter('tomorrow', $today)
-                ->orderBy('meeting.date', 'DESC')
+                ->orderBy('meeting.date', 'ASC')
                 ->setMaxResults(1)
                 ->getQuery()
                 ->execute();

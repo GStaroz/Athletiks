@@ -55,6 +55,38 @@ class Result
      */
     private $meeting;
 
+    function getTime() {
+        return $this->time;
+    }
+
+    function getPoints() {
+        return $this->points;
+    }
+
+    function getAthlete(): \AppBundle\Entity\Athlete {
+        return $this->athlete;
+    }
+
+    function getMeeting(): \AppBundle\Entity\Meeting {
+        return $this->meeting;
+    }
+
+    function setTime($time) {
+        $this->time = $time;
+    }
+
+    function setPoints($points) {
+        $this->points = $points;
+    }
+
+    function setAthlete(\AppBundle\Entity\Athlete $athlete) {
+        $this->athlete = $athlete;
+    }
+
+    function setMeeting(\AppBundle\Entity\Meeting $meeting) {
+        $this->meeting = $meeting;
+    }
+
 
 }
 

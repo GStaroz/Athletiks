@@ -4,7 +4,7 @@
     <div class="container">
         <div class="jumbotron">
             <h2>Next Event {{meeting.0.date|date('d/m')}}</h2> 
-            <p>sample text sample text sample text sample text</p>
+            <p>sample text sample text {{nextweek|date('d/m')}} text sample text</p>
             <img class="img-responsive img-rounded" src="{{asset('images/sportSample.jpg') }}" alt="random sport"
         </div>    
     </div>
