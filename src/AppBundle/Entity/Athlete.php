@@ -81,7 +81,10 @@ class Athlete
         return $this->userId;
     }
 
-
+    public function __toString()
+    {
+        return $this->getFirstname();
+}
 
     
 }

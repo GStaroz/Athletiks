@@ -28,3 +28,7 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             form_login: 
                 csrf_token_generator: security.csrf.token_manager
+                
+    access_control: 
+        - { path: ^/inscription, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }

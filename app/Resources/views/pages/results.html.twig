@@ -11,7 +11,11 @@
                         <li class="resultli list-group-item-heading">Coureur<span class="badge">points</span></li>
                         {% for resultat in results %}
                             {% if resultat.meeting.id == event.id%}
+                                {% if app.user.athlete.firstname == resultat.athlete.firstname %}
+                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}<span class="badge">{{resultat.points}}</span></div></li>
+                                {% else %}
                                 <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}<span class="badge">{{resultat.points}}</span></div></li>
+                                {% endif %}
                             {% endif %}
                         {%endfor%}
                     </ul>

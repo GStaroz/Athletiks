@@ -12,7 +12,7 @@
     <body>
         <header>
             {% if is_granted('ROLE_USER') %}
-                <h1>Bienvenue sur Athletik {{app.user}}</h1>
+                <h1>Bienvenue sur Athletik {{app.user.athlete.firstname}}</h1>
             {% else %}
                 <h1>Athletik - les 1000 pas</h1> 
             {% endif %}
@@ -35,9 +35,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Events
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                {% for event in events %}
-                                    <li><a href="{{path('event', {'meetingName': event.name|join})}}">{{event.name}}</a></li>
-                                {% endfor %}
+                                
                             </ul>
                       </li>       
                     </ul>

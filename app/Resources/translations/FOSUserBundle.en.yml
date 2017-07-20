@@ -2,3 +2,18 @@ registration:
     flash:
         user_created: "Votre compte a bien été créé, bon exploration !"
     confirmed: "Bienvenue sur le site des 1000 pas, futur athlète, nous esperons que votre temps sur le site seras plaisant !"     
+    submit: 'Confirmer'
+    
+form:
+    group_name: 'Group name'
+    username: 'Pseudonyme: '
+    email: 'Adresse Email: '
+    current_password: 'Current password'
+    password: 'Mot de Passe: '
+    password_confirmation: 'Comfirmez mot de passe: '
+    new_password: 'New password'
+    new_password_confirmation: 'Repeat new password'
+    athlete:
+        firstname: 'Prenom: '
+        lastname: 'Nom: '
+        birthdate: 'Année de naissance: '

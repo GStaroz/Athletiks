@@ -27,6 +27,8 @@ class indexController extends Controller {
     public function alleventsAction(){
         
         $today = new \DateTime('now');
+        $user = $this->getUser();
+        
         $nextWeek = $today->modify("+ 7 days");
         $em = $this->getDoctrine()->getManager();
         $meeting = $em->getRepository('AppBundle:Meeting')->findMostRecent();
@@ -34,6 +36,7 @@ class indexController extends Controller {
         return $this->render('pages/home.html.twig',['today'=>$today,
             'meeting'=> $meeting,
             'nextweek'=>$nextWeek,
-            'events'=>$Events]);
+            'events'=>$Events,
+            ]);
     }
 }

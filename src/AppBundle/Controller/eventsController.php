@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Meeting;
+use AppBundle\Entity\Athlete;
 
 /**
  * Description of eventsController
@@ -28,6 +29,24 @@ class eventsController extends Controller {
         $inscrits = $em->getRepository('AppBundle:Athlete')->findAll();
         $Events = $em->getRepository('AppBundle:Meeting')->findAll();
         return $this->render('pages/featured.html.twig', ['featured'=>$featured, 'inscrits'=>$inscrits, 'events'=>$Events]);
+    }
+    
+    /**
+     * @Route("Events/{meetingName}/inscription", name="inscription")
+     */
+    public function inscriptionAction($meetingName){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        if ($user){
+            $athlete = new Athlete();
+            $form = $this->createForm(\AppBundle\Form\InscriptionFormType::class, $athlete);
+            return $this->render('../FOSUserBundle/views/Registration/register_content.html.twig', ['formAthlete'=>$form->createView()]);
+        } else {
+            return $this->redirectToRoute('fos_user_registration_register');
+        }
+        
+        
+        
     }
     
     /**
