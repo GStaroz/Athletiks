@@ -15,14 +15,14 @@ class Result
     /**
      * @var float
      *
-     * @ORM\Column(name="time", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="time", type="float", precision=10, scale=0, nullable=true)
      */
     private $time;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="points", type="integer", nullable=false)
+     * @ORM\Column(name="points", type="integer", nullable=true)
      */
     private $points;
 

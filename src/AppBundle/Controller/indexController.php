@@ -37,6 +37,7 @@ class indexController extends Controller {
             'meeting'=> $meeting,
             'nextweek'=>$nextWeek,
             'events'=>$Events,
+            
             ]);
     }
 }

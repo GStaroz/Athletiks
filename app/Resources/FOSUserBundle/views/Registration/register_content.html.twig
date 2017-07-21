@@ -3,7 +3,9 @@
   
 
 <h1>Register Account</h1>
+
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    
     {{ form_row(form.username) }}
     {{ form_row(form.athlete.firstname) }}
     {{ form_row(form.athlete.lastname) }}
@@ -14,3 +16,4 @@
         <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}
+

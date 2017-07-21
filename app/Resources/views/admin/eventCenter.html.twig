@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Control Center{% endblock %}
+{% block body %}
+    <h1>Events Control Center</h1>
+    <div class="container">
+        {% for i in 1..6 %}
+            
+            <div class="well col-sm-4 adminEvent">
+                <h3>Event name</h3>
+                <a class="" href="#"><img class="img-rounded img-responsive" src="" alt="event image"></a>
+            </div>
+            
+        {% endfor %}
+    </div>
+    
+{% endblock %}

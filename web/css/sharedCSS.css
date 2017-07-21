@@ -17,3 +17,5 @@ span.badge {float: right}
 div.divli {width:100%; border:none}
 div.resultcol {border: none}
 .user {background-color: red}
+a.resultCol {text-decoration: underline; font-weight: bold; color: inherit}
+div.adminEvent {min-height: 250px;}

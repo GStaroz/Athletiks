@@ -6,13 +6,14 @@
         
             {% for event in events %}
                 <div class ="resultcol col-xs-12 col-sm-6 col-md-3 col-lg-2">
-                    <h4 class="text-center">{{ event.name }}</h4>
+                    <a href="{{ path('event', {'meetingName': event.name}) }}" class="resultCol"><h4 class="text-center">{{ event.name }}</h4></a>
                     <ul class="list-group">
                         <li class="resultli list-group-item-heading">Coureur<span class="badge">points</span></li>
                         {% for resultat in results %}
                             {% if resultat.meeting.id == event.id%}
                                 {% if app.user.athlete.firstname == resultat.athlete.firstname %}
-                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}<span class="badge">{{resultat.points}}</span></div></li>
+                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}
+                                        <span class="badge">{% if resultat.points is null%}NotRanYet{% else %}{{resultat.points}}{% endif %}</span></div></li>
                                 {% else %}
                                 <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}<span class="badge">{{resultat.points}}</span></div></li>
                                 {% endif %}

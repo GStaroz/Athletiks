@@ -11,8 +11,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use AppBundle\Entity\Meeting;
-use AppBundle\Entity\Athlete;
+use AppBundle\Entity\Result;
 
 /**
  * Description of eventsController
@@ -38,11 +37,24 @@ class eventsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         if ($user){
-            $athlete = new Athlete();
-            $form = $this->createForm(\AppBundle\Form\InscriptionFormType::class, $athlete);
-            return $this->render('../FOSUserBundle/views/Registration/register_content.html.twig', ['formAthlete'=>$form->createView()]);
+            $athlete = $user->getAthlete();
+            $meeting = $em->getRepository('AppBundle:Meeting')->findOneBy(['name'=>$meetingName]);
+            //return $this->render('base.html.twig',['message'=> $meeting]);
+            $Duplicate = $em->getRepository('AppBundle:Result')->findDuplicate($athlete, $meeting);
+            if ($Duplicate){
+                $message = 'Vous êtes dêja inscrit pour cette course !';
+                return $this->render('base.html.twig', ['message'=> $message]);
+            } else {
+                $message = 'Vous êtes bien inscrit pour la course de '.$meetingName;
+                $resultat = new Result();
+                $resultat->setAthlete($athlete);
+                $resultat->setMeeting($meeting);
+                $em->persist($resultat);
+                $em->flush();
+            return $this->render('base.html.twig', ['message'=> $message]);
+            }
         } else {
-            return $this->redirectToRoute('fos_user_registration_register');
+            return $this->redirectToRoute('fos_user_security_login');
         }
         
         
@@ -62,4 +74,6 @@ class eventsController extends Controller {
         }
         return $this->render('pages/events.html.twig',['events'=>$Events, 'mainevent'=>$event, 'inscrits'=>$inscrits]);
     }
+    
+    
 }

@@ -35,7 +35,14 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Events
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                
+                                {% if events is defined %}
+                                {% for event in events %}
+                                    <li><a href="{{path('event', {'meetingName': event.name})}}">{{event.name}}</a></li>
+                                {% endfor %}
+                                {% endif %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="">Manage Events</a></li>
+                                {% endif %}
                             </ul>
                       </li>       
                     </ul>
@@ -65,6 +72,9 @@
                 copyright machin truc et bidule
                 </div>
             </div>
+            {% if message is defined %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endif %}
         </footer>
         
     </body>

@@ -20,7 +20,7 @@ class User extends BaseUser
     
     
     /**
-     * @ORM\ManyToOne(targetEntity="Athlete")
+     * @ORM\ManyToOne(targetEntity="Athlete", cascade={"persist"})
      * 
      */
     protected $athlete;

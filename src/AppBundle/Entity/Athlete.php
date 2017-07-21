@@ -7,17 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Athlete
  *
- * @ORM\Table(name="athlete", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Table(name="athlete")
  * @ORM\Entity
  */
 class Athlete
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
-     */
-    private $userId;
+    
 
     /**
      * @var string
@@ -77,9 +72,7 @@ class Athlete
         $this->birthdate = $birthdate;
     }
 
-    function getUserId() {
-        return $this->userId;
-    }
+    
 
     public function __toString()
     {
