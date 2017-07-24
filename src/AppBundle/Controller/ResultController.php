@@ -32,16 +32,41 @@ class ResultController extends Controller{
      * @Route("/Results/setResults/{meetingName}", name="setResults") 
      */
     public function setResultsAction($meetingName){
+        
         $em = $this->getDoctrine()->getManager();
-        $meeting = $em->getRepository('AppBundle:Result')->findByMeeting($meetingName);
-        foreach($meeting as $event){
-            $time = rand(1,100)/100;
-            $points = 1000/$time;
+        $meeting = $em->getRepository('AppBundle:Meeting')->findBy(['name'=>$meetingName]);
+        $results = $em->getRepository('AppBundle:Result')->findBy(['meeting'=>$meeting]);
+        foreach($results as $event){
+            $age = 2017 - $event->getAthlete()->getBirthdate();
+            if ($age <= 11){
+                $coeff = 1.5;
+            } elseif ($age <= 13){
+                $coeff = 1.42;
+            } elseif ($age <= 15){
+                $coeff = 1.35;
+            } elseif ($age <= 17){
+                $coeff = 1.21;
+            } elseif ($age <= 19){
+                $coeff = 1.18;
+            } elseif ($age <= 22){
+                $coeff = 1.09;
+            } elseif ($age <= 40){
+                $coeff = 1;
+            } else {
+                $coeff = 1.35;
+            }
+ 
+            $time = rand(3,5)+(rand(0,100)/100);
+            $points = round((1000/$time)*$coeff, 0);
             $event->setTime($time);
             $event->setpoints($points);
             $em->persist($event);
             $em->flush();}
-            return $this->render('base.html.twig', ['message'=>'resultats enregistres']);
+        
+        $coucou = $meetingName;
+        $time = rand(3,5)+(rand(1,99)/100);
+            $points = round(1000/$time);
+            return $this->render('base.html.twig', ['message'=>'resultats enregistres '.$coucou]);
         }
     }
 

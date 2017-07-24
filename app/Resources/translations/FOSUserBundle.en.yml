@@ -1,7 +1,7 @@
 registration:
     flash:
         user_created: "Votre compte a bien été créé, bon exploration !"
-    confirmed: "Bienvenue sur le site des 1000 pas, futur athlète, nous esperons que votre temps sur le site seras plaisant !"     
+    confirmed: ""     
     submit: 'Confirmer'
     
 form:

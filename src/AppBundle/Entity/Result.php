@@ -87,6 +87,8 @@ class Result
         $this->meeting = $meeting;
     }
 
-
+    function __toString() {
+        return $this->getPoints();
+    }
 }
 

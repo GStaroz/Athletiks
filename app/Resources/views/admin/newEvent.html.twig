@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Create new Event</h1>
+
+                    {{ form_start(form, {'method': 'post', 'action': path('controlCenter')}) }}
+
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ate) }}
+                        {{ form_row(form.save) }}
+                        
+                    {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

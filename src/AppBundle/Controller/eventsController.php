@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Result;
+use AppBundle\Form\MeetingType;
 
 /**
  * Description of eventsController
@@ -56,11 +57,9 @@ class eventsController extends Controller {
         } else {
             return $this->redirectToRoute('fos_user_security_login');
         }
-        
-        
-        
     }
     
+
     /**
      * @Route("Events/{meetingName}", name="event") 
      */
