@@ -4,7 +4,7 @@
     <div class="row">
         <div class="container ">
             <div class="col-xs-6 col-sm-7 col-lg-9">
-                <img id='featured' class='img-responsive' src="{{asset('images/quimpertasse.jpg')}}" alt="la ville de l'event"> 
+                <img id='featured' class='img-responsive' src="http://via.placeholder.com/800x500" alt="la ville de l'event"> 
             <div>
                 <h2>Event details</h2>
                 <p>{{ mainevent.description}}</p>
@@ -14,7 +14,13 @@
                     <dt>Date:</dt>
                     <dl>{{mainevent.date|date('d/m/Y')}}</dl>
                 </dl>
-                <a href="{{path('inscription',{'meetingName': mainevent.name})}}" class='btn btn-success' role='button'>Participer</a>
+                    {% if "now"|date("d/m/Y") < mainevent.date|date("d/m/Y") %}
+                <a href="{{path('inscription',{'meetingName': mainevent.name})}}" class='btn btn-success btn-lg' role='button'>Participer</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="#" class="btn btn-primary" role="button">Resultats</a>
+                    <a href="#" class="btn btn-danger disabled" role="button">Supprimer</a>                   
+                {% endif%}    
             </div>        
             </div>
             <div class="col-xs-6 col-sm-5 col-lg-3 text-center">

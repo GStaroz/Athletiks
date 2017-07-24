@@ -37,4 +37,15 @@ class ResultsRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('athlete', $athlete)
                 ->getResult();
     }
+    
+    /**
+     * return Result[]
+     */
+    public function findByMeeting($meetingName){
+        return $this->createQueryBuilder('result')
+                ->where('result.meeting = :meeting')
+                ->setParameter('meeting', $meetingName)
+                ->getQuery()
+                ->execute();
+    }
 }

@@ -18,9 +18,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AdminController extends Controller {
     /**
      * 
-     * @Route("/admin/events")
+     * @Route("/admin/events", name="controlCenter")
      */
     public function ControlCenterAction(){
-        return $this->render('admin/eventCenter.html.twig');
+        $meeting = $this->getDoctrine()->getManager()->getRepository('AppBundle:Meeting')->findAll();
+        return $this->render('admin/eventCenter.html.twig', ['meeting'=> $meeting]);
     }
-}
+    
+    /**
+     * @Route("/admin/events/{meetingName}", name="adminEvent")
+     */
+    public function EditEventAction($meetingName){
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('AppBundle:Meeting')->findOneBy(['name'=> $meetingName]);
+        $inscrits = $em->getRepository('AppBundle:Athlete')->findAll();
+        return $this->render('pages/events.html.twig',['mainevent'=>$event, 'inscrits'=>$inscrits]);
+    }
+}   

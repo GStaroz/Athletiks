@@ -3,14 +3,18 @@
 {% block body %}
     <h1>Events Control Center</h1>
     <div class="container">
-        {% for i in 1..6 %}
+        {% for event in meeting %}
             
-            <div class="well col-sm-4 adminEvent">
-                <h3>Event name</h3>
-                <a class="" href="#"><img class="img-rounded img-responsive" src="" alt="event image"></a>
+            <div class="well col-xs-12 col-sm-6 col-md-4 adminEvent">
+                <h3>{{event.name}}</h3>
+                <a class="" href="{{path('adminEvent', {'meetingName': event.name}) }}"><img class="img-rounded img-responsive" src="http://via.placeholder.com/250x200" alt="event image"></a>
             </div>
             
         {% endfor %}
+        <div class="well col-xs-12 col-sm-6 col-md-4 adminEvent">
+                <h3>Add Event</h3>
+                <a class="" href="#"><img class="img-rounded img-responsive" src="http://via.placeholder.com/250x200" alt="event image"></a>
+            </div>
     </div>
     
 {% endblock %}
