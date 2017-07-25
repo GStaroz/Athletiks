@@ -28,6 +28,7 @@ class EventsRepository extends EntityRepository {
                 ->orderBy('meeting.date', 'ASC')
                 ->setMaxResults(1)
                 ->getQuery()
-                ->execute();
+                ->getSingleResult();
+                
     }
 }

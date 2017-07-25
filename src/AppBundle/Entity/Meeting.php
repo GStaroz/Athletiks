@@ -50,7 +50,7 @@ class Meeting
         return $this->description;
     }
 
-    function getDate(): \DateTime {
+    function getDate(){
         return $this->date;
     }
 

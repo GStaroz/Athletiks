@@ -28,9 +28,11 @@
                 <h3>Participants</h3>
                 <ul class='list-group'>
                     {% for inscrit in inscrits %}
+                        {% if inscrit.meeting.name == mainevent.name %}
                         <li class='list-group-item'><img class='avatar img-responsive hidden-xs' src='http://via.placeholder.com/50x50' alt='avatar'>
-                            <div class='featuredInscrit'>{{ inscrit.firstname }} {{ inscrit.lastname }}</div></li>
-                    {% endfor %}
+                            <div class='featuredInscrit'>{{ inscrit.athlete.firstname|title }} {{ inscrit.athlete.lastname|title }}</div></li>
+                        {% endif %}
+                        {% endfor %}
                 </ul>
             </div>
             

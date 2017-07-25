@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 use \Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\DBAL\Query\QueryBuilder;
 /**
  * Description of ResultController
  *
@@ -67,6 +68,18 @@ class ResultController extends Controller{
         $time = rand(3,5)+(rand(1,99)/100);
             $points = round(1000/$time);
             return $this->render('base.html.twig', ['message'=>'resultats enregistres '.$coucou]);
+        }
+        
+        /**
+         * @Route("/Results/all", name="globalResults")
+         */
+        public function showGlobalResultsAction(){
+            $em = $this->getDoctrine()->getManager();
+            $connection = $em->getConnection();
+            $statement = $connection->prepare('SELECT SUM(result.points) as total, athlete.lastname, athlete.firstname FROM result inner join athlete on result.athlete_id = athlete.id inner join meeting on result.meeting_id = meeting.id WHERE YEAR(CURRENT_DATE()) = 2017 GROUP BY athlete.id ORDER BY total DESC');
+            $statement->execute();
+            $results = $statement->fetchAll();
+            return $this->render('pages/results.html.twig',['results'=>$results]);
         }
     }
 

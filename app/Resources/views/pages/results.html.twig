@@ -1,8 +1,10 @@
 {% extends 'base.html.twig'%}
 
 {% block body %}
+    {% if events is defined %}
     <h1>RESULTATS DES COURSES MAGUEULE</h1>
-    <div class="container">
+    <a href="{{path('globalResults')}}" class="btn btn-primary">Classement Général</a>
+    <div class="container-fluid">
         
             {% for event in events %}
                 <div class ="resultcol col-xs-12 col-sm-6 col-md-3 col-lg-2">
@@ -11,11 +13,15 @@
                         <li class="resultli list-group-item-heading">Coureur<span class="badge">points</span></li>
                         {% for resultat in results %}
                             {% if resultat.meeting.id == event.id%}
+                                {% if app.user is not null %}
                                 {% if app.user.athlete.firstname == resultat.athlete.firstname %}
-                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}
+                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname|title}}
                                         <span class="badge">{% if resultat.points is null%}NotRanYet{% else %}{{resultat.points}}{% endif %}</span></div></li>
                                 {% else %}
-                                <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname}}<span class="badge">{{resultat.points}}</span></div></li>
+                                <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname|title}}<span class="badge">{{resultat.points}}</span></div></li>
+                                {% endif %}
+                                {% else %}
+                                <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.athlete.firstname|title}}<span class="badge">{{resultat.points}}</span></div></li>
                                 {% endif %}
                             {% endif %}
                         {%endfor%}
@@ -25,5 +31,26 @@
             {% endfor %}
         
     </div>
-    
+   {% elseif results is defined %}
+       <h1>Global Results</h1>
+    <div class="container">
+        
+            
+                    <ul class="list-group">
+                        <li class="resultli list-group-item-heading">Coureur<span class="badge">points</span></li>
+                        {% for resultat in results %}
+                            
+                                {% if app.user.athlete.firstname == resultat.firstname %}
+                                <li class="row resultli user list-group-item justify-content-between"><div class="divli ">{{resultat.firstname|title}}
+                                        <span class="badge">{% if resultat.total is null%}NotRanYet{% else %}{{resultat.total}}{% endif %}</span></div></li>
+                                {% else %}
+                                <li class="row resultli list-group-item justify-content-between"><div class="divli ">{{resultat.firstname|title}}<span class="badge">{{resultat.total}}</span></div></li>
+                                {% endif %}
+                            
+                        {%endfor%}
+                    </ul>
+                    
+                </div>
+            
+   {% endif %} 
 {% endblock %}

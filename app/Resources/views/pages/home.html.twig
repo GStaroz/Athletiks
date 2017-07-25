@@ -3,9 +3,25 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
-            <h2>Next Event {{meeting.0.date|date('d/m')}}</h2> 
+            <h2>Next Event {{meeting.date|date('d/m')}}</h2> 
             <p>sample text sample text {{nextweek|date('d/m')}} text sample text</p>
             <img class="img-responsive img-rounded" src="{{asset('images/sportSample.jpg') }}" alt="random sport"
+            <div class="row">
+                <h3>Simulate results !</h3>
+                <div class="input-group">
+                    
+                    <input id="calculfield" type="time" placeholder="Votre temps, m.s"> 
+                </div>
+                <div class="input-group">
+                    <input id="calculage" type="number" placeholder="Votre âge">
+                    <p id="result"></p>
+                </div>
+                    <button id="calculbtn" class="btn btn-danger">OK !</button>
+                </div>
         </div>    
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }} 
+    <script src="{{asset('js/calcul.js')}}"
 {% endblock %}
