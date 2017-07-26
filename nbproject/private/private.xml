@@ -5,10 +5,12 @@
         <group>
             <file>file:/var/www/ECFatle/app/Resources/views/pages/events.html.twig</file>
             <file>file:/var/www/ECFatle/src/AppBundle/Controller/eventsController.php</file>
+            <file>file:/var/www/ECFatle/app/config/parameters.yml</file>
             <file>file:/var/www/ECFatle/src/AppBundle/Controller/ResultController.php</file>
             <file>file:/var/www/ECFatle/app/Resources/views/pages/results.html.twig</file>
-            <file>file:/var/www/ECFatle/app/Resources/views/pages/home.html.twig</file>
             <file>file:/var/www/ECFatle/app/Resources/views/admin/eventCenter.html.twig</file>
+            <file>file:/var/www/ECFatle/app/Resources/views/pages/home.html.twig</file>
+            <file>file:/var/www/ECFatle/app/config/parameters.yml.dist</file>
             <file>file:/var/www/ECFatle/src/AppBundle/Controller/AdminController.php</file>
             <file>file:/var/www/ECFatle/app/Resources/views/base.html.twig</file>
         </group>
